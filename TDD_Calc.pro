@@ -2,10 +2,15 @@ QT += core gui
 QT += widgets
 
 CONFIG += c++11
-CONFIG += run_tests
+#CONFIG += run_tests
 
 
 SOURCES += \
+    external/DarkStyle.cpp \
+    external/framelesswindow/framelesswindow.cpp \
+    external/framelesswindow/windowdragger.cpp \
+    src/bitlabel.cpp \
+    src/calculator.cpp \
     src/displaybin.cpp \
     src/displaymain.cpp \
     src/functionbuttons.cpp \
@@ -15,6 +20,11 @@ SOURCES += \
     src/calcmainwindow.cpp
 
 HEADERS += \
+    external/DarkStyle.h \
+    external/framelesswindow/framelesswindow.h \
+    external/framelesswindow/windowdragger.h \
+    src/bitlabel.h \
+    src/calculator.h \
     src/displaybin.h \
     src/displaymain.h \
     src/functionbuttons.h \
@@ -40,3 +50,10 @@ run_tests {
     SOURCES += \
         src/main.cpp
 }
+
+RESOURCES += \
+    external/darkstyle.qrc \
+    external/framelesswindow.qrc
+
+FORMS += \
+    external/framelesswindow/framelesswindow.ui

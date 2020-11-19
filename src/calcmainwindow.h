@@ -16,6 +16,11 @@ class CalcMainWindow : public QMainWindow
 public:
     CalcMainWindow(QWidget *parent = nullptr);
     ~CalcMainWindow();
+
+signals:
+    void move(int x, int y);
+    void show();
+
 private:
     DisplayMain*     mainDisplay    = nullptr;
     DisplayBin*      binDisplay     = nullptr;
