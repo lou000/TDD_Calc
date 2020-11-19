@@ -18,7 +18,9 @@ public:
 private:
     qint64 displayedNumber;
     qint64 previousNumber;
+   //https://stackoverflow.com/questions/47981/how-do-you-set-clear-and-toggle-a-single-bit
     qint64 memory;
+
     CalcFunction savedFunction = None;
 };
 
