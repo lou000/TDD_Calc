@@ -19,7 +19,7 @@ DisplayMain::DisplayMain(QWidget *parent) : QWidget(parent)
     displayText->setFont(font);
 }
 
-void DisplayMain::displayNumber(qint64 number, NumeralSystem dispSystem)
+void DisplayMain::displayNumber(qint64 number, Calc::NumeralSystem dispSystem)
 {
     displayText->setText(QString::number(number));
 }

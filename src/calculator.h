@@ -2,6 +2,7 @@
 #define CALCULATOR_H
 
 #include <QObject>
+#include <QDebug>
 
 enum CalcFunction
 {

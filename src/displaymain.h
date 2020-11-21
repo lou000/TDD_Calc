@@ -6,13 +6,7 @@
 #include <QGridLayout>
 #include <QStyleOption>
 #include <QPainter>
-
-enum NumeralSystem{
-    Hex,
-    Dec,
-    Oct,
-    Bin
-};
+#include "globalinclude.h"
 
 class DisplayMain : public QWidget
 {
@@ -32,7 +26,7 @@ private:
     }
 
 public slots:
-    void displayNumber(qint64 number, NumeralSystem dispSystem);
+    void displayNumber(qint64 number, Calc::NumeralSystem dispSystem);
 
 };
 

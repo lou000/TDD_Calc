@@ -8,6 +8,10 @@ QStatusBar{
   background-color:qlineargradient(x1:0,y1:0,x2:0,y2:1,stop:0 rgba(25,25,25,127),stop:1 rgba(53,53,53,75));
   color:palette(mid);
 }
+QLabel#binDisp{
+  padding:0px 0px;
+  color: #707070;
+}
 QMenuBar{
   background-color: #353535;
   border-bottom:5px solid #353535;
@@ -210,6 +214,21 @@ QCheckBox::indicator:indeterminate:pressed,QTreeView::indicator:indeterminate:pr
 QCheckBox::indicator:indeterminate:disabled,QTreeView::indicator:indeterminate:disabled,QTableView::indicator:indeterminate:disabled,QGroupBox::indicator:indeterminate:disabled{
   image:url(:/darkstyle/icon_checkbox_indeterminate_disabled.png);
 }
+
+QPushButton#numerical{
+
+  background-color:#404244;
+  font: bold;
+}
+
+QPushButton#numerical:disabled{
+  background-color:palette(base);
+}
+
+QPushButton:disabled{
+  background-color:palette(base);
+}
+
 QRadioButton::indicator{
   width:18px;
   height:18px;

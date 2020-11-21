@@ -14,6 +14,7 @@ SOURCES += \
     src/displaybin.cpp \
     src/displaymain.cpp \
     src/functionbuttons.cpp \
+    src/memorybuttons.cpp \
     src/modeselection.cpp \
     src/numberbuttons.cpp \
     src/actionbar.cpp \
@@ -23,11 +24,13 @@ HEADERS += \
     external/DarkStyle.h \
     external/framelesswindow/framelesswindow.h \
     external/framelesswindow/windowdragger.h \
+    src/globalinclude.h \
     src/bitlabel.h \
     src/calculator.h \
     src/displaybin.h \
     src/displaymain.h \
     src/functionbuttons.h \
+    src/memorybuttons.h \
     src/modeselection.h \
     src/numberbuttons.h \
     src/actionbar.h \

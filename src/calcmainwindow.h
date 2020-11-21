@@ -7,6 +7,7 @@
 #include "src/functionbuttons.h"
 #include "src/numberbuttons.h"
 #include "src/actionbar.h"
+#include "memorybuttons.h"
 
 class CalcMainWindow : public QMainWindow
 {
@@ -15,7 +16,6 @@ class CalcMainWindow : public QMainWindow
 
 public:
     CalcMainWindow(QWidget *parent = nullptr);
-    ~CalcMainWindow();
 
 signals:
     void move(int x, int y);
@@ -25,7 +25,10 @@ private:
     DisplayMain*     mainDisplay    = nullptr;
     DisplayBin*      binDisplay     = nullptr;
     ModeSelection*   modeSelection  = nullptr;
-    FunctionButtons* functionButtons = nullptr;
-    NumberButtons*   numberButtons  = nullptr;
-    ActionBar*       actionBar      = nullptr;
+    LeftFunctionButtons* leftFunctionButtons  = nullptr;
+    RightFunctionButtons* rightFunctionButtons = nullptr;
+    MemoryButtons*    memoryButtons     = nullptr;
+    DecNumberButtons* decNumberButtons  = nullptr;
+    HexNumberButtons* hexNumberButtons  = nullptr;
+    ActionBar*        actionBar         = nullptr;
 };
