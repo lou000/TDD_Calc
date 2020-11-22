@@ -29,7 +29,7 @@ signals:
     void bitFlipped(int bitPosition);
 
 public slots:
-    void setBits(quint64 number);
+    void setBits(qint64 number);
     void changeDisplayPrecision(Calc::BitPrecision precision);
 
 };

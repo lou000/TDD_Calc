@@ -73,7 +73,8 @@ CalcMainWindow::CalcMainWindow(QWidget *parent)
     // Set default state of buttons
     decNumberButtons->setButtonsEnabled(Calc::NumeralSystem::Dec);
     hexNumberButtons->setButtonsEnabled(false);
-    binDisplay->setBits(1);
+
+    binDisplay->setBits(99999999);//TESTING binDisplay
 }
 
 

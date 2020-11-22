@@ -1,7 +1,7 @@
 ﻿#pragma once
 #include "QDebug"
 
-#define CHECK_BIT(var,pos) ((var) & (1<<(pos)))
+#define CHECK_BIT(var,pos) ((var >> pos) & 1UL)
 #define NUMBER_OF_BITS 64
 
 namespace Calc {
