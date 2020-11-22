@@ -3,6 +3,8 @@
 #include <QWidget>
 #include <QPushButton>
 #include <QGridLayout>
+#include <QShortcut>
+#include <QKeySequence>
 #include "globalinclude.h"
 
 class MemoryButtons : public QWidget

@@ -25,10 +25,19 @@ MemoryButtons::MemoryButtons(QWidget *parent) : QWidget(parent)
     layout->addWidget(memAddButton,      0, 3);
     layout->addWidget(memSubtractButton, 0, 4);
 
+    //Connecting buttons to main signal
     QObject::connect(memClearButton,    &QPushButton::pressed, [&](){emit memoryButtonPressed(Calc::MemoryFunctions::memClear);});
     QObject::connect(memRestoreButton,  &QPushButton::pressed, [&](){emit memoryButtonPressed(Calc::MemoryFunctions::memRestore);});
     QObject::connect(memSaveButton,     &QPushButton::pressed, [&](){emit memoryButtonPressed(Calc::MemoryFunctions::memSave);});
     QObject::connect(memAddButton,      &QPushButton::pressed, [&](){emit memoryButtonPressed(Calc::MemoryFunctions::memAdd);});
     QObject::connect(memSubtractButton, &QPushButton::pressed, [&](){emit memoryButtonPressed(Calc::MemoryFunctions::memSubtract);});
+
+    //Button shortcuts
+    memClearButton->setShortcut(QKeySequence("Ctrl+L"));
+    memRestoreButton->setShortcut(QKeySequence("Ctrl+R"));
+    memSaveButton->setShortcut(QKeySequence("Ctrl+M"));
+    memAddButton->setShortcut(QKeySequence("Ctrl+P"));
+    memSubtractButton->setShortcut(QKeySequence("Ctrl+Q"));
+
 
 }

@@ -19,6 +19,8 @@ DisplayMain::DisplayMain(QWidget *parent) : QWidget(parent)
     displayText->setFont(font);
 }
 
+// This is the only function that we need right now
+// later i might add a second label to display memory, last number and currently executed function
 void DisplayMain::displayNumber(qint64 number, Calc::NumeralSystem dispSystem)
 {
     displayText->setText(QString::number(number));

@@ -56,6 +56,7 @@ LeftFunctionButtons::LeftFunctionButtons(QWidget *parent) : QWidget(parent)
     layout->addWidget(andButton, 5, 1);
 
 
+    // Connect buttons to main signal
     QObject::connect(modButton, &QPushButton::pressed, [&](){emit functionButtonPressed(Calc::Functions::_mod);});
     QObject::connect(rolButton, &QPushButton::pressed, [&](){emit functionButtonPressed(Calc::Functions::_rol);});
     QObject::connect(rorButton, &QPushButton::pressed, [&](){emit functionButtonPressed(Calc::Functions::_ror);});
@@ -86,6 +87,22 @@ LeftFunctionButtons::LeftFunctionButtons(QWidget *parent) : QWidget(parent)
 
         emit functionButtonPressed(Calc::Functions::_parClose);
     });
+
+    // Button shortcuts
+
+    modButton->setShortcut(QKeySequence("%"));
+    paranthesesOpenButton->setShortcut(QKeySequence("("));
+    paranthesesCloseButton->setShortcut(QKeySequence(")"));
+    rolButton->setShortcut(QKeySequence("J"));
+    rorButton->setShortcut(QKeySequence("K"));
+    orButton ->setShortcut(QKeySequence("|"));
+    xorButton->setShortcut(QKeySequence("^"));
+    lshButton->setShortcut(QKeySequence("<"));
+    rshButton->setShortcut(QKeySequence(">"));
+    // Changed the NOT button from '~' to '!',
+    // becouse polish keyboard layout makes it hard to type '~'
+    notButton->setShortcut(QKeySequence("!"));
+    andButton->setShortcut(QKeySequence("&"));
 }
 
 // This slot below clears the parantheses count and display
@@ -133,16 +150,25 @@ RightFunctionButtons::RightFunctionButtons(QWidget *parent) : QWidget(parent)
     layout->addWidget(addButton,      4, 0);
     layout->addWidget(equalButton,    3, 1, 2, 1);
 
-    //Disable the disabled buttons...
+    // Disable the disabled buttons...
     deadButton1->setEnabled(false);
     deadButton2->setEnabled(false);
     deadButton3->setEnabled(false);
 
+    // Connect buttons to main signal
     QObject::connect(invertButton,   &QPushButton::pressed, [&](){emit functionButtonPressed(Calc::Functions::_mod);});
     QObject::connect(divideButton,   &QPushButton::pressed, [&](){emit functionButtonPressed(Calc::Functions::_rol);});
     QObject::connect(multiplyButton, &QPushButton::pressed, [&](){emit functionButtonPressed(Calc::Functions::_ror);});
     QObject::connect(subtractButton, &QPushButton::pressed, [&](){emit functionButtonPressed(Calc::Functions::_or );});
     QObject::connect(addButton,      &QPushButton::pressed, [&](){emit functionButtonPressed(Calc::Functions::_xor);});
     QObject::connect(equalButton,    &QPushButton::pressed, [&](){emit functionButtonPressed(Calc::Functions::_lsh);});
+
+    //Button shortcuts - skipping dead buttons
+    invertButton->setShortcut(QKeySequence("F9"));
+    divideButton->setShortcut(QKeySequence("/"));
+    multiplyButton->setShortcut(QKeySequence("*"));
+    subtractButton->setShortcut(QKeySequence("-"));
+    addButton->setShortcut(QKeySequence("+"));
+    equalButton->setShortcut(QKeySequence("="));
 
 }

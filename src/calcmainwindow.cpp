@@ -31,7 +31,7 @@ CalcMainWindow::CalcMainWindow(QWidget *parent)
     layout->addWidget(rightFunctionButtons,3, 8, 5, 2);
 
     mainDisplay->setMinimumHeight(90);
-    binDisplay->setMaximumHeight(80);
+    binDisplay->setMaximumHeight(70);
     centralWidget->setLayout(layout);
 
     layout->setRowStretch(0, 6);
@@ -65,9 +65,15 @@ CalcMainWindow::CalcMainWindow(QWidget *parent)
         }
     });
 
+    //Connect precision selection to binaryDisplay
+    QObject::connect(modeSelection, &ModeSelection::precisionChanged,[&](Calc::BitPrecision precision){
+        binDisplay->changeDisplayPrecision(precision);
+    });
+
     // Set default state of buttons
     decNumberButtons->setButtonsEnabled(Calc::NumeralSystem::Dec);
     hexNumberButtons->setButtonsEnabled(false);
+    binDisplay->setBits(1);
 }
 
 

@@ -22,6 +22,7 @@ DecNumberButtons::DecNumberButtons(QWidget *parent) : QWidget(parent)
     buttonCE = new QPushButton("CE" ,this);
     buttonDeadComa = new QPushButton("," ,this);
 
+    // Disable a dead button
     buttonDeadComa->setEnabled(false);
 
     button0->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
@@ -54,6 +55,7 @@ DecNumberButtons::DecNumberButtons(QWidget *parent) : QWidget(parent)
     layout->addWidget(button0,         4, 0, 1, 2);
     layout->addWidget(buttonDeadComa,  4, 2);
 
+    // Change the object name to use a brighter stylesheet
     button0->setObjectName("numerical");
     button1->setObjectName("numerical");
     button2->setObjectName("numerical");
@@ -69,6 +71,7 @@ DecNumberButtons::DecNumberButtons(QWidget *parent) : QWidget(parent)
     buttonCE->setObjectName("numerical");
     buttonDeadComa->setObjectName("numerical");
 
+    // Connect to main signal
     QObject::connect(button0,   &QPushButton::pressed, [&](){emit numericalButtonPressed(Calc::NumberPad::_0);});
     QObject::connect(button1,   &QPushButton::pressed, [&](){emit numericalButtonPressed(Calc::NumberPad::_1);});
     QObject::connect(button2,   &QPushButton::pressed, [&](){emit numericalButtonPressed(Calc::NumberPad::_2);});
@@ -82,6 +85,22 @@ DecNumberButtons::DecNumberButtons(QWidget *parent) : QWidget(parent)
     QObject::connect(buttonBackSpace,   &QPushButton::pressed, [&](){emit numericalButtonPressed(Calc::NumberPad::backSpace);});
     QObject::connect(buttonClear,   &QPushButton::pressed, [&](){emit numericalButtonPressed(Calc::NumberPad::Clear);});
     QObject::connect(buttonCE,   &QPushButton::pressed, [&](){emit numericalButtonPressed(Calc::NumberPad::ClearEnter);});
+
+
+    // Buttons shortcuts
+    button0->setShortcut(QKeySequence("0"));
+    button1->setShortcut(QKeySequence("1"));
+    button2->setShortcut(QKeySequence("2"));
+    button3->setShortcut(QKeySequence("3"));
+    button4->setShortcut(QKeySequence("4"));
+    button5->setShortcut(QKeySequence("5"));
+    button6->setShortcut(QKeySequence("6"));
+    button7->setShortcut(QKeySequence("7"));
+    button8->setShortcut(QKeySequence("8"));
+    button9->setShortcut(QKeySequence("9"));
+    buttonBackSpace->setShortcut(QKeySequence(Qt::Key_Backspace));
+    buttonClear->setShortcut(QKeySequence(Qt::Key_Escape));
+    buttonCE->setShortcut(QKeySequence(Qt::Key_Delete));
 
 }
 
@@ -113,6 +132,7 @@ HexNumberButtons::HexNumberButtons(QWidget *parent) : QWidget(parent)
     layout->addWidget(buttonE, 4, 0);
     layout->addWidget(buttonF, 5, 0);
 
+    // Change the object name to use a brighter stylesheet
     buttonA->setObjectName("numerical");
     buttonB->setObjectName("numerical");
     buttonC->setObjectName("numerical");
@@ -120,6 +140,7 @@ HexNumberButtons::HexNumberButtons(QWidget *parent) : QWidget(parent)
     buttonE->setObjectName("numerical");
     buttonF->setObjectName("numerical");
 
+    // Connect to main signal
     QObject::connect(buttonA,   &QPushButton::pressed, [&](){emit numericalButtonPressed(Calc::NumberPad::A);});
     QObject::connect(buttonB,   &QPushButton::pressed, [&](){emit numericalButtonPressed(Calc::NumberPad::B);});
     QObject::connect(buttonC,   &QPushButton::pressed, [&](){emit numericalButtonPressed(Calc::NumberPad::C);});
@@ -127,10 +148,19 @@ HexNumberButtons::HexNumberButtons(QWidget *parent) : QWidget(parent)
     QObject::connect(buttonE,   &QPushButton::pressed, [&](){emit numericalButtonPressed(Calc::NumberPad::E);});
     QObject::connect(buttonF,   &QPushButton::pressed, [&](){emit numericalButtonPressed(Calc::NumberPad::F);});
 
+    // Buttons shortcuts
+    buttonA->setShortcut(QKeySequence("A"));
+    buttonB->setShortcut(QKeySequence("B"));
+    buttonC->setShortcut(QKeySequence("C"));
+    buttonD->setShortcut(QKeySequence("D"));
+    buttonE->setShortcut(QKeySequence("E"));
+    buttonF->setShortcut(QKeySequence("F"));
+
 }
 
 void DecNumberButtons::setButtonsEnabled(Calc::NumeralSystem system)
 {
+    // This below is really ugly but at the same time its very clear and explicit
     switch (system) {
     case Calc::NumeralSystem::Hex:
         button0->setEnabled(true);
