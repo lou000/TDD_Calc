@@ -9,9 +9,10 @@ class BitLabel : public QLabel
 public:
     BitLabel(int bitNumber, QWidget* parent);
     void mousePressEvent(QMouseEvent* event);
+    int bitPosition(){ return m_bitPosition;}
 
 private:
-    int bitPosition = 0;
+    int m_bitPosition = 0;
 
 signals:
     void clicked(int bitPosition);

@@ -3,7 +3,7 @@
 BitLabel::BitLabel(int bitNumber, QWidget* parent) : QLabel(parent)
 {
     this->setText("0");
-    this->bitPosition = bitNumber;
+    this->m_bitPosition = bitNumber;
     this->setContentsMargins(0, 0, 0, 0);
     this->setMargin(0);
 }
@@ -25,7 +25,7 @@ void BitLabel::mousePressEvent(QMouseEvent *event)
 {
     flipBit();
     event->accept();
-    emit clicked(this->bitPosition);
+    emit clicked(this->m_bitPosition);
 }
 
 
