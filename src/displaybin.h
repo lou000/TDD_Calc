@@ -2,12 +2,12 @@
 #define DISPLAYBIN_H
 
 #include <QWidget>
-#include "bitlabel.h"
 #include <QGridLayout>
 #include <QStyleOption>
 #include <QPainter>
-#include <QDebug>
-#define NUMBER_OF_BITS 64
+#include "bitlabel.h"
+#include "globalinclude.h"
+
 
 
 class DisplayBin : public QWidget
@@ -17,7 +17,8 @@ public:
     explicit DisplayBin(QWidget *parent = nullptr);
 
 private:
-    QVector<BitLabel *> labels;
+    QVector<BitLabel*> labels;
+    QVector<QLabel*> helperLabels;
     void paintEvent(QPaintEvent *) {
             QStyleOption opt;
             opt.init(this);
@@ -25,6 +26,11 @@ private:
             style()->drawPrimitive(QStyle::PE_Widget, &opt, &p, this);
     }
 signals:
+    void bitFlipped(int bitPosition);
+
+public slots:
+    void setBits(quint64 number);
+    void changeDisplayPrecision(Calc::BitPrecision precision);
 
 };
 

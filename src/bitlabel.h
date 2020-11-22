@@ -1,23 +1,23 @@
-﻿#ifndef BITLABEL_H
-#define BITLABEL_H
-
+﻿#pragma once
 #include <QLabel>
 #include <QMouseEvent>
+#include "globalinclude.h"
 
 class BitLabel : public QLabel
 {
     Q_OBJECT
 public:
     BitLabel(int bitNumber, QWidget* parent);
-    void flipBit();
-    void setBit(bool val);
     void mousePressEvent(QMouseEvent* event);
 
 private:
-    int bitNumber = 0;
+    int bitPosition = 0;
 
 signals:
-    void clicked();
+    void clicked(int bitPosition);
+
+public slots:
+    void flipBit();
+    void setBit(bool val);
 };
 
-#endif // BITLABEL_H
