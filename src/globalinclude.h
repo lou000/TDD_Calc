@@ -3,6 +3,7 @@
 
 #define CHECK_BIT(var,pos) ((var >> pos) & 1UL)
 #define NUMBER_OF_BITS 64
+#define MAKE_TESTABLE friend class Tests;
 
 namespace Calc {
 
@@ -21,6 +22,7 @@ enum BitPrecision{
 };
 
 enum Functions{
+    _none,
     _mod,
     _parOpen,
     _parClose,
@@ -51,23 +53,23 @@ enum NumberPad{
     _7,
     _8,
     _9,
-    A,
-    B,
-    C,
-    D,
-    E,
-    F,
-    backSpace,
-    Clear,     // Clears all but memory
-    ClearEnter // Clears number on display only
+    _A,
+    _B,
+    _C,
+    _D,
+    _E,
+    _F,
+    _backSpace,
+    _clear,     // Clears all but memory
+    _clearEnter // Clears number on display only
 };
 
 enum MemoryFunctions{
-    memClear,
-    memRestore,
-    memSave,
-    memAdd,
-    memSubtract
+    _memClear,
+    _memRestore,
+    _memSave,
+    _memAdd,
+    _memSubtract
 };
 
 }

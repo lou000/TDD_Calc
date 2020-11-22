@@ -11,7 +11,7 @@
 class DisplayMain : public QWidget
 {
     Q_OBJECT
-    friend class Tests;
+    MAKE_TESTABLE
 
 public:
     explicit DisplayMain(QWidget *parent = nullptr);

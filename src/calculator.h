@@ -3,16 +3,12 @@
 
 #include <QObject>
 #include <QDebug>
+#include "globalinclude.h"
 
-enum CalcFunction
-{
-    None,
-    Add,
-    Divide
-};
 
 class Calculator
 {
+    MAKE_TESTABLE
 public:
     Calculator();
 
@@ -22,7 +18,7 @@ private:
    //https://stackoverflow.com/questions/47981/how-do-you-set-clear-and-toggle-a-single-bit
     qint64 memory;
 
-    CalcFunction savedFunction = None;
+    Calc::Functions savedFunction = Calc::_none;
 };
 
 /*

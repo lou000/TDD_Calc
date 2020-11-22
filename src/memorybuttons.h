@@ -10,8 +10,11 @@
 class MemoryButtons : public QWidget
 {
     Q_OBJECT
+    MAKE_TESTABLE
+
 public:
     explicit MemoryButtons(QWidget *parent = nullptr);
+
 private:
     QPushButton* memClearButton;
     QPushButton* memRestoreButton;

@@ -13,6 +13,8 @@
 class DisplayBin : public QWidget
 {
     Q_OBJECT
+    MAKE_TESTABLE
+
 public:
     explicit DisplayBin(QWidget *parent = nullptr);
 

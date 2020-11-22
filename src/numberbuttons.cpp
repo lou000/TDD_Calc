@@ -82,9 +82,9 @@ DecNumberButtons::DecNumberButtons(QWidget *parent) : QWidget(parent)
     QObject::connect(button7,   &QPushButton::pressed, [&](){emit numericalButtonPressed(Calc::NumberPad::_7);});
     QObject::connect(button8,   &QPushButton::pressed, [&](){emit numericalButtonPressed(Calc::NumberPad::_8);});
     QObject::connect(button9,   &QPushButton::pressed, [&](){emit numericalButtonPressed(Calc::NumberPad::_9);});
-    QObject::connect(buttonBackSpace,   &QPushButton::pressed, [&](){emit numericalButtonPressed(Calc::NumberPad::backSpace);});
-    QObject::connect(buttonClear,   &QPushButton::pressed, [&](){emit numericalButtonPressed(Calc::NumberPad::Clear);});
-    QObject::connect(buttonCE,   &QPushButton::pressed, [&](){emit numericalButtonPressed(Calc::NumberPad::ClearEnter);});
+    QObject::connect(buttonBackSpace,   &QPushButton::pressed, [&](){emit numericalButtonPressed(Calc::NumberPad::_backSpace);});
+    QObject::connect(buttonClear,   &QPushButton::pressed, [&](){emit numericalButtonPressed(Calc::NumberPad::_clear);});
+    QObject::connect(buttonCE,   &QPushButton::pressed, [&](){emit numericalButtonPressed(Calc::NumberPad::_clearEnter);});
 
 
     // Buttons shortcuts
@@ -141,12 +141,12 @@ HexNumberButtons::HexNumberButtons(QWidget *parent) : QWidget(parent)
     buttonF->setObjectName("numerical");
 
     // Connect to main signal
-    QObject::connect(buttonA,   &QPushButton::pressed, [&](){emit numericalButtonPressed(Calc::NumberPad::A);});
-    QObject::connect(buttonB,   &QPushButton::pressed, [&](){emit numericalButtonPressed(Calc::NumberPad::B);});
-    QObject::connect(buttonC,   &QPushButton::pressed, [&](){emit numericalButtonPressed(Calc::NumberPad::C);});
-    QObject::connect(buttonD,   &QPushButton::pressed, [&](){emit numericalButtonPressed(Calc::NumberPad::D);});
-    QObject::connect(buttonE,   &QPushButton::pressed, [&](){emit numericalButtonPressed(Calc::NumberPad::E);});
-    QObject::connect(buttonF,   &QPushButton::pressed, [&](){emit numericalButtonPressed(Calc::NumberPad::F);});
+    QObject::connect(buttonA,   &QPushButton::pressed, [&](){emit numericalButtonPressed(Calc::NumberPad::_A);});
+    QObject::connect(buttonB,   &QPushButton::pressed, [&](){emit numericalButtonPressed(Calc::NumberPad::_B);});
+    QObject::connect(buttonC,   &QPushButton::pressed, [&](){emit numericalButtonPressed(Calc::NumberPad::_C);});
+    QObject::connect(buttonD,   &QPushButton::pressed, [&](){emit numericalButtonPressed(Calc::NumberPad::_D);});
+    QObject::connect(buttonE,   &QPushButton::pressed, [&](){emit numericalButtonPressed(Calc::NumberPad::_E);});
+    QObject::connect(buttonF,   &QPushButton::pressed, [&](){emit numericalButtonPressed(Calc::NumberPad::_F);});
 
     // Buttons shortcuts
     buttonA->setShortcut(QKeySequence("A"));

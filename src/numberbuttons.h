@@ -7,8 +7,11 @@
 class DecNumberButtons : public QWidget
 {
     Q_OBJECT
+    MAKE_TESTABLE
+
 public:
     explicit DecNumberButtons(QWidget *parent = nullptr);
+
 private:
     QPushButton* button0;
     QPushButton* button1;
@@ -36,8 +39,11 @@ public slots:
 class HexNumberButtons : public QWidget
 {
     Q_OBJECT
+    MAKE_TESTABLE
+
 public:
     explicit HexNumberButtons(QWidget *parent = nullptr);
+
 private:
     QPushButton* buttonA;
     QPushButton* buttonB;

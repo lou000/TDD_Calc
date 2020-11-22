@@ -10,6 +10,8 @@
 class ModeSelection : public QWidget
 {
     Q_OBJECT
+    MAKE_TESTABLE
+
 public:
     explicit ModeSelection(QWidget *parent = nullptr);
 

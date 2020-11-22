@@ -11,6 +11,8 @@
 class LeftFunctionButtons : public QWidget
 {
     Q_OBJECT
+    MAKE_TESTABLE
+
 public:
     explicit LeftFunctionButtons(QWidget *parent = nullptr);
 
@@ -44,6 +46,8 @@ public slots:
 class RightFunctionButtons : public QWidget
 {
     Q_OBJECT
+    MAKE_TESTABLE
+
 public:
     explicit RightFunctionButtons(QWidget *parent = nullptr);
 

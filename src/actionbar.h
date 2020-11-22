@@ -3,10 +3,13 @@
 
 #include <QWidget>
 #include <QMenuBar>
+#include "globalinclude.h"
 
 class ActionBar : public QMenuBar
 {
     Q_OBJECT
+    MAKE_TESTABLE
+
 public:
     explicit ActionBar(QWidget *parent = nullptr);
 

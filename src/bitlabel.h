@@ -6,6 +6,8 @@
 class BitLabel : public QLabel
 {
     Q_OBJECT
+    MAKE_TESTABLE
+
 public:
     BitLabel(int bitNumber, QWidget* parent);
     void mousePressEvent(QMouseEvent* event);
