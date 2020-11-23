@@ -40,10 +40,10 @@ ModeSelection::ModeSelection(QWidget *parent) : QWidget(parent)
     ///
     /// Numeral system buttons
     ///
-    auto nsHex = new QRadioButton("Hex", numSystemSelection);
-    auto nsDec = new QRadioButton("Dec", numSystemSelection);
-    auto nsOct = new QRadioButton("Oct", numSystemSelection);
-    auto nsBin = new QRadioButton("Bin", numSystemSelection);
+    nsHex = new QRadioButton("Hex", numSystemSelection);
+    nsDec = new QRadioButton("Dec", numSystemSelection);
+    nsOct = new QRadioButton("Oct", numSystemSelection);
+    nsBin = new QRadioButton("Bin", numSystemSelection);
 
     sysLayout->addWidget(nsHex, 0, 0);
     sysLayout->addWidget(nsDec, 1, 0);
@@ -78,10 +78,10 @@ ModeSelection::ModeSelection(QWidget *parent) : QWidget(parent)
     ///
     /// Precision buttons
     ///
-    auto p64bit = new QRadioButton("64bit", precisionSelection);
-    auto p32bit = new QRadioButton("32bit", precisionSelection);
-    auto p16bit = new QRadioButton("16bit", precisionSelection);
-    auto p8bit = new QRadioButton(" 8bit", precisionSelection);
+    p64bit = new QRadioButton("64bit", precisionSelection);
+    p32bit = new QRadioButton("32bit", precisionSelection);
+    p16bit = new QRadioButton("16bit", precisionSelection);
+    p8bit = new QRadioButton(" 8bit", precisionSelection);
 
     precLayout->addWidget(p64bit, 0, 0);
     precLayout->addWidget(p32bit, 1, 0);

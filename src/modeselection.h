@@ -17,7 +17,16 @@ public:
 
 private:
     QWidget* numSystemSelection;
+    QRadioButton* nsHex;
+    QRadioButton* nsDec;
+    QRadioButton* nsOct;
+    QRadioButton* nsBin;
+
     QWidget* precisionSelection;
+    QRadioButton* p64bit;
+    QRadioButton* p32bit;
+    QRadioButton* p16bit;
+    QRadioButton* p8bit;
 
 signals:
     void numSystemChanged(Calc::NumeralSystem numSystem);
