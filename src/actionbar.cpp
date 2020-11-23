@@ -10,4 +10,8 @@ ActionBar::ActionBar(QWidget *parent) : QMenuBar(parent)
     auto help = addMenu("Help");
     help->addAction("Info", [&](){emit info();});
     help->addAction("Display Help", [&](){ emit this->help();})->setShortcut(QKeySequence::HelpContents);
+
+    menus.append(view);
+    menus.append(edit);
+    menus.append(help);
 }

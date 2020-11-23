@@ -13,6 +13,9 @@ class ActionBar : public QMenuBar
 public:
     explicit ActionBar(QWidget *parent = nullptr);
 
+private:
+    QVector<QMenu*> menus;
+
 signals:
     void toggleGroupNumbers();
     void copy();
