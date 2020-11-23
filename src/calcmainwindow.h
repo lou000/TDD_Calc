@@ -14,8 +14,6 @@ class CalcMainWindow : public QMainWindow
     Q_OBJECT
     MAKE_TESTABLE
 
-    friend class Tests;
-
 public:
     CalcMainWindow(QWidget *parent = nullptr);
 

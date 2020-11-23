@@ -19,7 +19,7 @@ public:
     explicit DisplayBin(QWidget *parent = nullptr);
 
 private:
-    QVector<BitLabel*> labels;
+    QVector<BitLabel*> labels;  // The labels are stored in reverse bit order
     QVector<QLabel*> helperLabels;
     void paintEvent(QPaintEvent *) {
             QStyleOption opt;

@@ -9,7 +9,7 @@ class BitLabel : public QLabel
     MAKE_TESTABLE
 
 public:
-    BitLabel(int bitNumber, QWidget* parent);
+    BitLabel(int bitNumber, QWidget* parent = nullptr);
     void mousePressEvent(QMouseEvent* event);
     int bitPosition(){ return m_bitPosition;}
 
