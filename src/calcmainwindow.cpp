@@ -65,14 +65,23 @@ CalcMainWindow::CalcMainWindow(QWidget *parent)
         }
     });
 
-    //Connect precision selection to binaryDisplay
+    // Connect binaryDisplay slots
     QObject::connect(modeSelection, &ModeSelection::precisionChanged,[&](Calc::BitPrecision precision){
         binDisplay->changeDisplayPrecision(precision);
     });
+    // Connect mainDisplay slots
+    QObject::connect(actionBar, &ActionBar::toggleGroupNumbers, mainDisplay, &DisplayMain::toggleGroupNumbers);
+    QObject::connect(actionBar, &ActionBar::copy, mainDisplay, &DisplayMain::copyFromDisplay);
+    QObject::connect(modeSelection, &ModeSelection::numSystemChanged, mainDisplay, &DisplayMain::setNumeralSystem);
 
     // Set default state of buttons
     decNumberButtons->setButtonsEnabled(Calc::NumeralSystem::Dec);
     hexNumberButtons->setButtonsEnabled(false);
+
+
+    // TESTING
+    mainDisplay->displayNumber(45686222222);
+    binDisplay->setBits(45686222222);
 }
 
 
