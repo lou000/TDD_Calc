@@ -5,7 +5,6 @@
 
 int main(int argc, char *argv[])
 {
-    QApplication::setDesktopSettingsAware(false);
     QApplication a(argc, argv);
     auto style = new DarkStyle;
     QApplication::setStyle(style);
