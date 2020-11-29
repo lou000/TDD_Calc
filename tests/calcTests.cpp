@@ -17,9 +17,9 @@ public:
     Tests();
     ~Tests();
 private:
-    //At the end of every test that modifies state call resetState()
     template <typename T, typename ...Args>
     void testShortcut(QWidget* widget, T* sender, void(T::*signal)(Args...), Qt::Key key, Qt::KeyboardModifier mod);
+
 private slots:
     void cleanup();
     void testActionBarInit();

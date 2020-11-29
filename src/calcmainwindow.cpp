@@ -16,6 +16,7 @@ CalcMainWindow::CalcMainWindow(QWidget *parent)
     hexNumberButtons = new HexNumberButtons(centralWidget);
     decNumberButtons = new DecNumberButtons(centralWidget);
     memoryButtons = new MemoryButtons(centralWidget);
+    calculator = new Calculator();
 
 
     auto layout = new QGridLayout(centralWidget);
@@ -74,14 +75,21 @@ CalcMainWindow::CalcMainWindow(QWidget *parent)
     QObject::connect(actionBar, &ActionBar::copy, mainDisplay, &DisplayMain::copyFromDisplay);
     QObject::connect(modeSelection, &ModeSelection::numSystemChanged, mainDisplay, &DisplayMain::setNumeralSystem);
 
+
     // Set default state of buttons
     decNumberButtons->setButtonsEnabled(Calc::NumeralSystem::Dec);
     hexNumberButtons->setButtonsEnabled(false);
 
 
     // TESTING
-    mainDisplay->displayNumber(45686222222);
-    binDisplay->setBits(45686222222);
+    QObject::connect(calculator, &Calculator::displayNumber, mainDisplay, &DisplayMain::displayNumber);
+    QObject::connect(calculator, &Calculator::displayNumber, binDisplay, &DisplayBin::setBits);
+    QObject::connect(binDisplay, &DisplayBin::bitFlipped, calculator, &Calculator::handleBitFlipped);
+    QObject::connect(decNumberButtons, &DecNumberButtons::numericalButtonPressed, calculator, &Calculator::handleNumberButton);
+    QObject::connect(hexNumberButtons, &HexNumberButtons::numericalButtonPressed, calculator, &Calculator::handleNumberButton);
+    QObject::connect(memoryButtons, &MemoryButtons::memoryButtonPressed, calculator, &Calculator::handleMemoryFunctions);
+    QObject::connect(leftFunctionButtons, &LeftFunctionButtons::functionButtonPressed, calculator, &Calculator::handleCalculatorFunction);
+    QObject::connect(rightFunctionButtons, &RightFunctionButtons::functionButtonPressed, calculator, &Calculator::handleCalculatorFunction);
 }
 
 

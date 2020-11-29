@@ -6,41 +6,41 @@
 #include "globalinclude.h"
 
 
-class Calculator
+class Calculator : public QObject
 {
+    Q_OBJECT
     MAKE_TESTABLE
 public:
-    Calculator();
+    Calculator(QObject *parent = nullptr);
 
 private:
-    qint64 displayedNumber;
+    qint64 currentNumber;
     qint64 previousNumber;
-   //https://stackoverflow.com/questions/47981/how-do-you-set-clear-and-toggle-a-single-bit
-    qint64 memory;
+    //qint64 memory;
+    bool numInMemory = false;
 
     Calc::Functions savedFunction = Calc::_none;
-};
+    Calc::BitPrecision currentPrecision = Calc::_64bit;
 
-/*
- *  void functionPressed(Func function){
- *
- *      if(function has one arg)
- *              calculator.savedFunction = None
- *              executeFunction(function)
- *      else
- *
- *      if(calculator.savedFunction !=  CalcFunction::None;)
- *              executeFunction(calculator.savedFunction);
- *      else
- *              calculator.savedFunction = function
- *
- *  }
- *
- *  void executeFunction(Func function){
- *
- *  }
- *
-*/
+    qint64 _32(qint64 number);
+    qint64 _16(qint64 number);
+    qint64 _8(qint64 number);
+    qint64 add(qint64 memory, qint64 number);
+    qint64 subtract(qint64 memory, qint64 number);
+    qint64 divide(qint64 memory, qint64 number);
+    qint64 multiply(qint64 memory, qint64 number);
+    qint64 executeFunction();
+signals:
+    void displayNumber(qint64 num);
+
+public slots:
+    void handleBitFlipped(int bitPosition);
+    void handleCalculatorFunction(Calc::Functions func);
+    void handleNumberButton(Calc::NumberPad numberButton);
+    void handlePrecisionSystemChange(Calc::BitPrecision prec);
+    void handleMemoryFunctions(Calc::MemoryFunctions func);
+
+};
 
 
 #endif // CALCULATOR_H

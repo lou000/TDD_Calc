@@ -8,6 +8,7 @@
 #include "src/numberbuttons.h"
 #include "src/actionbar.h"
 #include "memorybuttons.h"
+#include "calculator.h"
 
 class CalcMainWindow : public QMainWindow
 {
@@ -31,4 +32,5 @@ private:
     DecNumberButtons* decNumberButtons  = nullptr;
     HexNumberButtons* hexNumberButtons  = nullptr;
     ActionBar*        actionBar         = nullptr;
+    Calculator*       calculator        = nullptr;
 };
