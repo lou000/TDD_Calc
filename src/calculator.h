@@ -14,24 +14,24 @@ public:
     Calculator(QObject *parent = nullptr);
 
 private:
-    qint64 currentNumber;
-    qint64 previousNumber;
-    //qint64 memory;
-    bool numInMemory = false;
+    qint64 currentNumber = 0;
+    qint64 previousNumber = 0;
+    qint64 memoryNumber = 0;
+
+    bool waitingForNextNumb = true;
+    bool clearOnNextNumb = false;
 
     Calc::Functions savedFunction = Calc::_none;
     Calc::BitPrecision currentPrecision = Calc::_64bit;
+    Calc::NumeralSystem currentNumSystem = Calc::Dec;
 
-    qint64 _32(qint64 number);
-    qint64 _16(qint64 number);
-    qint64 _8(qint64 number);
-    qint64 add(qint64 memory, qint64 number);
-    qint64 subtract(qint64 memory, qint64 number);
-    qint64 divide(qint64 memory, qint64 number);
-    qint64 multiply(qint64 memory, qint64 number);
-    qint64 executeFunction();
+    QPair<float, Calc::Functions> savedExpression = QPair<float, Calc::Functions>(0, Calc::_none);
+
+    void displayNumber();
+    void executeFunction();
+
 signals:
-    void displayNumber(qint64 num);
+    void signalDisplayNumber(qint64 num);
 
 public slots:
     void handleBitFlipped(int bitPosition);
@@ -39,6 +39,7 @@ public slots:
     void handleNumberButton(Calc::NumberPad numberButton);
     void handlePrecisionSystemChange(Calc::BitPrecision prec);
     void handleMemoryFunctions(Calc::MemoryFunctions func);
+    void handleNumeralSystemChanged(Calc::NumeralSystem sys);
 
 };
 

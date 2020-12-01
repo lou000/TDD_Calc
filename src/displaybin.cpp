@@ -155,6 +155,6 @@ void DisplayBin::changeDisplayPrecision(Calc::BitPrecision precision)
 void DisplayBin::setBits(qint64 number)
 {
     for(int i=0; i<NUMBER_OF_BITS; i++)
-        labels[i]->setBit(CHECK_BIT(number, i));
+        labels[i]->setBit(BIT_CHECK(number, i));
 }
 

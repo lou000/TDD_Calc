@@ -156,12 +156,12 @@ RightFunctionButtons::RightFunctionButtons(QWidget *parent) : QWidget(parent)
     deadButton3->setEnabled(false);
 
     // Connect buttons to main signal
-    QObject::connect(invertButton,   &QPushButton::pressed, [&](){emit functionButtonPressed(Calc::Functions::_mod);});
-    QObject::connect(divideButton,   &QPushButton::pressed, [&](){emit functionButtonPressed(Calc::Functions::_rol);});
-    QObject::connect(multiplyButton, &QPushButton::pressed, [&](){emit functionButtonPressed(Calc::Functions::_ror);});
-    QObject::connect(subtractButton, &QPushButton::pressed, [&](){emit functionButtonPressed(Calc::Functions::_or );});
-    QObject::connect(addButton,      &QPushButton::pressed, [&](){emit functionButtonPressed(Calc::Functions::_xor);});
-    QObject::connect(equalButton,    &QPushButton::pressed, [&](){emit functionButtonPressed(Calc::Functions::_lsh);});
+    QObject::connect(invertButton,   &QPushButton::pressed, [&](){emit functionButtonPressed(Calc::Functions::_invert);});
+    QObject::connect(divideButton,   &QPushButton::pressed, [&](){emit functionButtonPressed(Calc::Functions::_divide);});
+    QObject::connect(multiplyButton, &QPushButton::pressed, [&](){emit functionButtonPressed(Calc::Functions::_multiply);});
+    QObject::connect(subtractButton, &QPushButton::pressed, [&](){emit functionButtonPressed(Calc::Functions::_subtract );});
+    QObject::connect(addButton,      &QPushButton::pressed, [&](){emit functionButtonPressed(Calc::Functions::_add);});
+    QObject::connect(equalButton,    &QPushButton::pressed, [&](){emit functionButtonPressed(Calc::Functions::_equal);});
 
     //Button shortcuts - skipping dead buttons
     invertButton->setShortcut(QKeySequence("F9"));

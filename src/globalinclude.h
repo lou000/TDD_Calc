@@ -1,7 +1,11 @@
 ﻿#pragma once
 #include "QDebug"
 
-#define CHECK_BIT(var,pos) ((var >> pos) & 1UL)
+#define BIT_CHECK(number, bitPos) ((number) &   (1ULL<<(bitPos)))
+#define BIT_SET(number, bitPos)   ((number) |=  (1ULL<<(bitPos)))
+#define BIT_CLEAR(number, bitPos) ((number) &= ~(1ULL<<(bitPos)))
+#define BIT_FLIP(number, bitPos)  ((number) ^=  (1ULL<<(bitPos)))
+
 #define NUMBER_OF_BITS 64
 #define MAKE_TESTABLE friend class Tests;
 
@@ -23,27 +27,27 @@ enum BitPrecision{
 
 enum Functions{
     _none,
-    _mod,
-    _parOpen,
-    _parClose,
-    _rol,
-    _ror,
-    _or,
-    _xor,
-    _lsh,
-    _rsh,
-    _not,
-    _and,
-    _invert,
-    _divide,
-    _multiply,
-    _subtract,
-    _add,
-    _equal
+    _mod,   // 2 args
+    _parOpen,  // ??
+    _parClose, // ??
+    _rol,   // 1 arg
+    _ror,   // 1 arg
+    _or,    // 2 arg
+    _xor,   // 2 arg
+    _lsh,   // 2 arg
+    _rsh,   // 2 arg
+    _not,   // 1 arg
+    _and,   // 2 arg
+    _invert,// 1 arg
+    _divide,// 2 arg
+    _multiply, // 2 arg
+    _subtract, // 2 arg
+    _add,      // 2 arg
+    _equal  // ???
 };
 
 enum NumberPad{
-    _0,
+    _0 = 0,
     _1,
     _2,
     _3,

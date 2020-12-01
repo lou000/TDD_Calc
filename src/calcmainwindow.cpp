@@ -82,14 +82,16 @@ CalcMainWindow::CalcMainWindow(QWidget *parent)
 
 
     // TESTING
-    QObject::connect(calculator, &Calculator::displayNumber, mainDisplay, &DisplayMain::displayNumber);
-    QObject::connect(calculator, &Calculator::displayNumber, binDisplay, &DisplayBin::setBits);
+    QObject::connect(calculator, &Calculator::signalDisplayNumber, mainDisplay, &DisplayMain::displayNumber);
+    QObject::connect(calculator, &Calculator::signalDisplayNumber, binDisplay, &DisplayBin::setBits);
     QObject::connect(binDisplay, &DisplayBin::bitFlipped, calculator, &Calculator::handleBitFlipped);
     QObject::connect(decNumberButtons, &DecNumberButtons::numericalButtonPressed, calculator, &Calculator::handleNumberButton);
     QObject::connect(hexNumberButtons, &HexNumberButtons::numericalButtonPressed, calculator, &Calculator::handleNumberButton);
     QObject::connect(memoryButtons, &MemoryButtons::memoryButtonPressed, calculator, &Calculator::handleMemoryFunctions);
     QObject::connect(leftFunctionButtons, &LeftFunctionButtons::functionButtonPressed, calculator, &Calculator::handleCalculatorFunction);
     QObject::connect(rightFunctionButtons, &RightFunctionButtons::functionButtonPressed, calculator, &Calculator::handleCalculatorFunction);
+    QObject::connect(modeSelection, &ModeSelection::precisionChanged, calculator, &Calculator::handlePrecisionSystemChange);
+    QObject::connect(modeSelection, &ModeSelection::numSystemChanged, calculator, &Calculator::handleNumeralSystemChanged);
 }
 
 
