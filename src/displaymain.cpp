@@ -6,7 +6,6 @@ DisplayMain::DisplayMain(QWidget *parent) : QWidget(parent)
 
     displayText->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
     displayText->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-    displayText->setWordWrap(true);
     auto layout = new QGridLayout(this);
     layout->addWidget(displayText);
     this->setLayout(layout);
@@ -18,7 +17,7 @@ DisplayMain::DisplayMain(QWidget *parent) : QWidget(parent)
                          "}");
 
     QFont font;
-    font.setPixelSize(50);
+    font.setPixelSize(35);
     displayText->setFont(font);
 }
 
@@ -32,7 +31,7 @@ void DisplayMain::setNumeralSystem(Calc::NumeralSystem sys)
     case Calc::NumeralSystem::Hex:
     {
         QFont font;
-        font.setPixelSize(50);
+        font.setPixelSize(35);
         displayText->setFont(font);
         break;
     }
