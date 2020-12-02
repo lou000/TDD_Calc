@@ -34,7 +34,8 @@ HEADERS += \
     src/modeselection.h \
     src/numberbuttons.h \
     src/actionbar.h \
-    src/calcmainwindow.h
+    src/calcmainwindow.h \
+    src/windows_mess.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

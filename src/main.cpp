@@ -2,6 +2,7 @@
 #include "external/framelesswindow/framelesswindow.h"
 #include "external/DarkStyle.h"
 #include <QApplication>
+#include "windows_mess.h"
 
 int main(int argc, char *argv[])
 {
@@ -26,5 +27,20 @@ int main(int argc, char *argv[])
         framelessWindow->show();
     });
     window->show();
+
+//    IT WORKS
+//    auto hwnd = getHWNDfromName("Kalkulator");
+//    auto mHwnd = (HWND)window->effectiveWinId();
+//    setWindowToForeground(hwnd);
+//    sendKeyToActiveWindow(Qt::Key_3, Qt::NoModifier);
+//    sendKeyToActiveWindow(Qt::Key_Asterisk, Qt::NoModifier);
+//    sendKeyToActiveWindow(Qt::Key_5, Qt::NoModifier);
+//    sendKeyToActiveWindow(Qt::Key_Return, Qt::NoModifier);
+//    setWindowToForeground(mHwnd);
+//    sendKeyToActiveWindow(Qt::Key_3, Qt::NoModifier);
+//    sendKeyToActiveWindow(Qt::Key_Asterisk, Qt::NoModifier);
+//    sendKeyToActiveWindow(Qt::Key_5, Qt::NoModifier);
+//    sendKeyToActiveWindow(Qt::Key_Return, Qt::NoModifier);
+
     return a.exec();
 }
