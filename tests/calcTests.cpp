@@ -882,7 +882,7 @@ void Tests::testButtonShortcuts()
     testShortcut(mainWindow, mainWindow->rightFunctionButtons, &RightFunctionButtons::functionButtonPressed,
                  Qt::Key_Plus, Qt::NoModifier);
     testShortcut(mainWindow, mainWindow->rightFunctionButtons, &RightFunctionButtons::functionButtonPressed,
-                 Qt::Key_Equal, Qt::NoModifier);
+                 Qt::Key_Return, Qt::NoModifier);
 
     // Test memoryButtons shortcuts
     testShortcut(mainWindow, mainWindow->memoryButtons, &MemoryButtons::memoryButtonPressed,

@@ -169,6 +169,6 @@ RightFunctionButtons::RightFunctionButtons(QWidget *parent) : QWidget(parent)
     multiplyButton->setShortcut(QKeySequence("*"));
     subtractButton->setShortcut(QKeySequence("-"));
     addButton->setShortcut(QKeySequence("+"));
-    equalButton->setShortcut(QKeySequence("="));
+    equalButton->setShortcut(Qt::Key_Return);
 
 }
