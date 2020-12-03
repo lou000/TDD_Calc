@@ -47,6 +47,8 @@ enum Functions{
 };
 
 enum NumberPad{
+    // The numbers in this enum have to be on positions corresponding with
+    // their decimal value. Do not move them.
     _0 = 0,
     _1,
     _2,

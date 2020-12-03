@@ -136,6 +136,10 @@ void Calculator::handleNumberButton(Calc::NumberPad numberButton)
                 break;
             }
         break;
+
+    // The default case handles buttons 0-9 and A-F
+    // we cast the enum value to int which gives us the reqired number
+    // the enum needs to be correctly setup
     default:
         if(clearOnNextNumb)
         {
@@ -147,22 +151,26 @@ void Calculator::handleNumberButton(Calc::NumberPad numberButton)
 
         switch (currentNumSystem) {
         case Calc::Hex:
-            Q_ASSERT(static_cast<int>(numberButton)<16);
+            if(static_cast<int>(numberButton)>=16)
+                break;
             currentNumber *= 16;
             currentNumber += static_cast<int>(numberButton);
             break;
         case Calc::Dec:
-            Q_ASSERT(static_cast<int>(numberButton)<10);
+            if(static_cast<int>(numberButton)>=10)
+                break;
             currentNumber *= 10;
             currentNumber += static_cast<int>(numberButton);
             break;
         case Calc::Oct:
-            Q_ASSERT(static_cast<int>(numberButton)<8);
+            if(static_cast<int>(numberButton)>=8)
+                break;
             currentNumber *= 8;
             currentNumber += static_cast<int>(numberButton);
             break;
         case Calc::Bin:
-            Q_ASSERT(static_cast<int>(numberButton)<2);
+            if(static_cast<int>(numberButton)>=2)
+                break;
             currentNumber *= 2;
             currentNumber += static_cast<int>(numberButton);
             break;
