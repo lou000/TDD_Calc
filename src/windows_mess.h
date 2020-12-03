@@ -3,12 +3,23 @@
 #include <QKeyEvent>
 #include "windows.h"
 
-HWND getHWNDfromName(QString str)
+HWND getHWNDfromName(QString wClass, QString wName)
 {
-    wchar_t* name = new wchar_t[str.length() + 1];
-    str.toWCharArray(name);
-    auto hwnd = FindWindow(0, name);
+    wchar_t* name = new wchar_t[wName.length() + 1];
+    wName.toWCharArray(name);
+    wchar_t* clas = new wchar_t[wClass.length() + 1];
+    wClass.toWCharArray(clas);
+
+    HWND hwnd;
+    if(wClass == "")
+        hwnd = FindWindowEx(0, 0, 0, name);
+    else if(wName == "")
+        hwnd = FindWindowEx(0, 0, clas, 0);
+    else
+        hwnd = FindWindowEx(0, 0, clas, name);
+
     delete[] name;
+    delete[] clas;
     return hwnd;
 }
 
@@ -29,13 +40,13 @@ void setWindowToForeground(HWND m_hWnd)
 bool sendKeyToActiveWindow(Qt::Key key, Qt::KeyboardModifier mod)
 {
     quint32 nativeMod = 0;
-    if (mod & Qt::ShiftModifier)
+    if (mod == Qt::ShiftModifier)
         nativeMod = VK_SHIFT;
-    if (mod & Qt::ControlModifier)
+    if (mod == Qt::ControlModifier)
         nativeMod = VK_CONTROL;
-    if (mod & Qt::AltModifier)
+    if (mod == Qt::AltModifier)
         nativeMod = VK_MENU;
-    if (mod & Qt::MetaModifier)
+    if (mod == Qt::MetaModifier)
         nativeMod = MOD_WIN;
 
     qint32 nativeKey;
@@ -176,13 +187,19 @@ bool sendKeyToActiveWindow(Qt::Key key, Qt::KeyboardModifier mod)
         nativeKey = VK_ADD;
         break;
     case Qt::Key_Comma:
-        nativeKey = VK_SEPARATOR;
+        nativeKey = VK_OEM_COMMA;
+        break;
+    case Qt::Key_Period:
+        nativeKey = VK_OEM_PERIOD;
         break;
     case Qt::Key_Minus:
         nativeKey = VK_SUBTRACT;
         break;
     case Qt::Key_Slash:
         nativeKey = VK_DIVIDE;
+        break;
+    case Qt::Key_Backslash:
+        nativeKey = VK_OEM_5;
         break;
     case Qt::Key_MediaNext:
         nativeKey = VK_MEDIA_NEXT_TRACK;
@@ -196,9 +213,6 @@ bool sendKeyToActiveWindow(Qt::Key key, Qt::KeyboardModifier mod)
     case Qt::Key_MediaStop:
         nativeKey = VK_MEDIA_STOP;
         break;
-        // couldn't find those in VK_*
-        //case Qt::Key_MediaLast:
-        //case Qt::Key_MediaRecord:
     case Qt::Key_VolumeDown:
         nativeKey = VK_VOLUME_DOWN;
         break;
@@ -273,7 +287,8 @@ bool sendKeyToActiveWindow(Qt::Key key, Qt::KeyboardModifier mod)
         inputs[3].ki.wVk = nativeMod;
         inputs[3].ki.dwFlags = KEYEVENTF_KEYUP;
 
-        SendInput(ARRAYSIZE(inputs), inputs, sizeof(INPUT));
+        if(SendInput(ARRAYSIZE(inputs), inputs, sizeof(INPUT)) != 4)
+            qDebug()<<"Input error";
     }
     else
     {
@@ -285,7 +300,8 @@ bool sendKeyToActiveWindow(Qt::Key key, Qt::KeyboardModifier mod)
         inputs[1].ki.wVk = nativeKey;
         inputs[1].ki.dwFlags = KEYEVENTF_KEYUP;
 
-        SendInput(ARRAYSIZE(inputs), inputs, sizeof(INPUT));
+        if(SendInput(ARRAYSIZE(inputs), inputs, sizeof(INPUT)) != 2)
+            qDebug()<<"Input error";
     }
     return true;
 }

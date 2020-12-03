@@ -3,6 +3,8 @@
 #include <bitset>
 #include "external/framelesswindow/framelesswindow.h"
 #include "../src/calcmainwindow.h"
+#include "../src/windows_mess.h"
+#include "end_to_end_tests.cpp"
 
 // add necessary includes here
 
@@ -50,6 +52,8 @@ private slots:
     void testNumberButtonsSignals();
     void testNumberButtonsFunctionality();
     void testButtonShortcuts();
+
+    void testEndToEndFuzz(){endToEndFuzzTest(mainWindow, 20, 300);};
 };
 
 Tests::Tests()
@@ -84,6 +88,8 @@ Tests::~Tests()
 void Tests::cleanup()
 {
     delete mainWindow;
+    framelessWindow->hide();
+    delete framelessWindow;
     framelessWindow = new FramelessWindow();
     mainWindow = new CalcMainWindow(framelessWindow);
     framelessWindow->setContent(mainWindow);
@@ -965,6 +971,7 @@ void Tests::testButtonShortcuts()
     testShortcut(mainWindow, mainWindow->hexNumberButtons, &HexNumberButtons::numericalButtonPressed,
                  Qt::Key_F, Qt::NoModifier);
 }
+
 
 
 QTEST_MAIN(Tests)

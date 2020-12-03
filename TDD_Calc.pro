@@ -2,7 +2,7 @@ QT += core gui
 QT += widgets
 
 CONFIG += c++11
-#CONFIG += run_tests
+CONFIG += run_tests
 
 
 SOURCES += \
@@ -46,7 +46,8 @@ run_tests {
     TARGET = calc_tests
     # test specific files and options here
     SOURCES += \
-        tests/calcTests.cpp
+        tests/calcTests.cpp \
+        tests/end_to_end_tests.cpp
 
     QT += testlib
 } else {
