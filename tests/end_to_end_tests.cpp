@@ -36,13 +36,13 @@ static QVector<KeyInput> functionKeyPool{
     KeyInput(Qt::Key_5, Qt::ShiftModifier),
 //    KeyInput(Qt::Key_9, Qt::ShiftModifier), not yet implemented
 //    KeyInput(Qt::Key_0, Qt::ShiftModifier),
-    KeyInput(Qt::Key_J, Qt::NoModifier),
-    KeyInput(Qt::Key_K, Qt::NoModifier),
+//    KeyInput(Qt::Key_J, Qt::NoModifier), diffirent hotkeys
+//    KeyInput(Qt::Key_K, Qt::NoModifier),
     KeyInput(Qt::Key_Backslash, Qt::ShiftModifier),
     KeyInput(Qt::Key_6, Qt::ShiftModifier),
     KeyInput(Qt::Key_Comma, Qt::ShiftModifier),
     KeyInput(Qt::Key_Period, Qt::ShiftModifier),
-    KeyInput(Qt::Key_1, Qt::ShiftModifier),
+//    KeyInput(Qt::Key_1, Qt::ShiftModifier), diffirent hotkey
     KeyInput(Qt::Key_7, Qt::ShiftModifier),
 
     KeyInput(Qt::Key_F9, Qt::NoModifier),
@@ -101,9 +101,7 @@ void endToEndFuzzTest(CalcMainWindow* mainWindow, int iterations, int delay)
 
     auto origCalc = getHWNDfromName("", "Kalkulator");
     if(!origCalc)
-        origCalc =(HWND)0x00060758;
-    else
-        qDebug()<<"Handle is"<<origCalc;
+        QVERIFY(0);
 
     auto seed = QDateTime::currentMSecsSinceEpoch();
     qDebug()<<"endToEndFuzzTest seed is:"<<seed;
@@ -123,8 +121,8 @@ void endToEndFuzzTest(CalcMainWindow* mainWindow, int iterations, int delay)
         // Press some numbers
         if(actionType == 1)
         {
-            qDebug()<<"\n\nInsert numbers action!";
-            auto numIter = rnd.bounded(1, 10);
+            qDebug()<<"\n\nNumbers!";
+            auto numIter = rnd.bounded(1, 5);
             for(int i=0; i<numIter; i++)
             {
                 auto numberInput = numberKeyPool.at(rnd.bounded(0, numberKeyPool.length()-1));

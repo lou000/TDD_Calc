@@ -2,7 +2,7 @@ QT += core gui
 QT += widgets
 
 CONFIG += c++11
-CONFIG += run_tests
+#CONFIG += run_tests
 
 
 SOURCES += \

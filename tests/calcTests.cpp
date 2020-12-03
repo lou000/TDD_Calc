@@ -53,6 +53,11 @@ private slots:
     void testNumberButtonsFunctionality();
     void testButtonShortcuts();
 
+    void testCalculatorInit();
+    void testCalculatorSignals();
+    void testCalculatorFunctionality();
+
+
     void testEndToEndFuzz(){endToEndFuzzTest(mainWindow, 20, 300);};
 };
 
@@ -162,6 +167,7 @@ void Tests::testActionBarSignals()
 
 void Tests::testActionBarFunctionality()
 {
+    //TODO: tests and functionality
     QSKIP("Functionality not implemented.");
 }
 
@@ -343,7 +349,28 @@ void Tests::testMainDisplayInit()
 
 void Tests::testMainDisplayFunctionality()
 {
-    QSKIP("Functionality not implemented.");
+    auto disp = mainWindow->mainDisplay;
+
+    //Testing setNumeralSystem
+    disp->setNumeralSystem(Calc::NumeralSystem::Bin);
+    QCOMPARE(disp->dispSystem, Calc::NumeralSystem::Bin);
+    QCOMPARE(disp->displayText->font().pixelSize(), 22);
+
+    disp->setNumeralSystem(Calc::NumeralSystem::Dec);
+    QCOMPARE(disp->dispSystem, Calc::NumeralSystem::Dec);
+    QCOMPARE(disp->displayText->font().pixelSize(), 35);
+
+    disp->setNumeralSystem(Calc::NumeralSystem::Hex);
+    QCOMPARE(disp->dispSystem, Calc::NumeralSystem::Hex);
+    QCOMPARE(disp->displayText->font().pixelSize(), 35);
+
+    disp->setNumeralSystem(Calc::NumeralSystem::Oct);
+    QCOMPARE(disp->dispSystem, Calc::NumeralSystem::Oct);
+    QCOMPARE(disp->displayText->font().pixelSize(), 35);
+
+    //Testing displayNumber
+
+
 }
 
 void Tests::testFunctionButtonsInit()
@@ -490,6 +517,7 @@ void Tests::testMemoryButtonsSignals()
 
 void Tests::testMemoryButtonsFunctionality()
 {
+    //TODO: implementation and tests
     QSKIP("Functionality not implemented.");
 }
 
@@ -970,6 +998,24 @@ void Tests::testButtonShortcuts()
                  Qt::Key_E, Qt::NoModifier);
     testShortcut(mainWindow, mainWindow->hexNumberButtons, &HexNumberButtons::numericalButtonPressed,
                  Qt::Key_F, Qt::NoModifier);
+}
+
+void Tests::testCalculatorInit()
+{
+    //TODO: tests
+    QSKIP("Tests not implemented.");
+}
+
+void Tests::testCalculatorSignals()
+{
+    //TODO: tests
+    QSKIP("Tests not implemented.");
+}
+
+void Tests::testCalculatorFunctionality()
+{
+    //TODO: tests
+    QSKIP("Tests not implemented.");
 }
 
 
