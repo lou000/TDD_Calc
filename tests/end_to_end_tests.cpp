@@ -40,9 +40,9 @@ static QVector<KeyInput> functionKeyPool{
 //    KeyInput(Qt::Key_K, Qt::NoModifier),
     KeyInput(Qt::Key_Backslash, Qt::ShiftModifier),
     KeyInput(Qt::Key_6, Qt::ShiftModifier),
-    KeyInput(Qt::Key_Comma, Qt::ShiftModifier),
-    KeyInput(Qt::Key_Period, Qt::ShiftModifier),
-//    KeyInput(Qt::Key_1, Qt::ShiftModifier), diffirent hotkey
+//    KeyInput(Qt::Key_Comma, Qt::ShiftModifier),diffirent hotkeys
+//    KeyInput(Qt::Key_Period, Qt::ShiftModifier),
+//    KeyInput(Qt::Key_1, Qt::ShiftModifier),
     KeyInput(Qt::Key_7, Qt::ShiftModifier),
 
     KeyInput(Qt::Key_F9, Qt::NoModifier),
@@ -52,41 +52,49 @@ static QVector<KeyInput> functionKeyPool{
     KeyInput(Qt::Key_Plus, Qt::NoModifier)
 };
 
+bool waitForWindowToActivate(HWND win, int ms)
+{
+    return QTest::qWaitFor([=](){setWindowToForeground(win);
+                              return GetForegroundWindow() == win;
+                             }, ms);
+}
+
+bool waitForClipboardValue(int ms)
+{
+    return QTest::qWaitFor([=](){return QApplication::clipboard()->text() != "";}, ms);
+}
 
 bool compareCalcOutputs(CalcMainWindow* mainWindow, HWND origCalc, KeyInput input, int delay)
 {
     // Send key to our calculator
-
     setWindowToForeground((HWND)mainWindow->effectiveWinId());
-    QTest::qWait(delay);
-    if(!QTest::qWaitFor([=](){return GetForegroundWindow() == (HWND)mainWindow->effectiveWinId();}, 5000))
-        return false;
+    if (!waitForWindowToActivate((HWND)mainWindow->effectiveWinId(), 5000)) return false;
     sendKeyToActiveWindow(input.key, input.mod);
     QTest::qWait(delay);
 
     //Read value via ctrl + c
     QString myVal;
     sendKeyToActiveWindow(Qt::Key_C, Qt::ControlModifier);
-    if(!QTest::qWaitFor([=](){return QApplication::clipboard()->text() != "";}, 1000))
-        myVal = "Failed to copy output from myCalc";
-    else
+    if(waitForClipboardValue(5000))
         myVal = QApplication::clipboard()->text();
+    else
+        myVal = "Failed to copy output from myCalc or output is empty";
     QApplication::clipboard()->clear();
 
     // Send key to calculator reference
     setWindowToForeground(origCalc);
-    if(!QTest::qWaitFor([=](){return GetForegroundWindow() == origCalc;}, 5000))
-        return false;
+    if(!waitForWindowToActivate(origCalc, 5000)) return false;
+    QTest::qWait(delay);
     sendKeyToActiveWindow(input.key, input.mod);
     QTest::qWait(delay);
 
     //Read value via ctrl + c
     QString origVal;
     sendKeyToActiveWindow(Qt::Key_C, Qt::ControlModifier);
-    if(!QTest::qWaitFor([=](){return QApplication::clipboard()->text() != "";}, 1000))
-        origVal = "Failed to copy output from refCalc";
-    else
+    if(waitForClipboardValue(5000))
         origVal = QApplication::clipboard()->text();
+    else
+        origVal = "Failed to copy output from myCalc or output is empty";
     QApplication::clipboard()->clear();
 
     qDebug()<<"Input - "<<input.key<<input.mod;
@@ -99,19 +107,20 @@ void endToEndFuzzTest(CalcMainWindow* mainWindow, int iterations, int delay)
     mainWindow->show();
     QVERIFY(QTest::qWaitForWindowExposed(mainWindow));
 
-    auto origCalc = getHWNDfromName("", "Kalkulator");
+    QVector<QPair<HWND, QString>> winList;
+    EnumDesktopWindows(NULL, enumWindowCallback, reinterpret_cast<LPARAM>(&winList));
+    HWND origCalc;
+    for(auto pair : winList)
+        if(pair.second == "Kalkulator")
+            origCalc = pair.first;
     if(!origCalc)
         QVERIFY(0);
 
     auto seed = QDateTime::currentMSecsSinceEpoch();
     qDebug()<<"endToEndFuzzTest seed is:"<<seed;
-
     QRandomGenerator rnd(seed);
 
-    setWindowToForeground(origCalc);
-    if(!QTest::qWaitFor([=](){return GetForegroundWindow() == origCalc;}, 5000))
-        QVERIFY(0);
-    QTest::qWait(delay);
+    QVERIFY(waitForWindowToActivate(origCalc, 5000));
     sendKeyToActiveWindow(Qt::Key_Escape, Qt::NoModifier);
 
     for(int i=0; i<iterations; i++)
@@ -136,6 +145,5 @@ void endToEndFuzzTest(CalcMainWindow* mainWindow, int iterations, int delay)
             auto functInput = functionKeyPool.at(rnd.bounded(0, functionKeyPool.length()-1));
             QVERIFY(compareCalcOutputs(mainWindow, origCalc, functInput, delay));
         }
-        QTest::qWait(delay);
     }
 }

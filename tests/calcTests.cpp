@@ -58,7 +58,7 @@ private slots:
     void testCalculatorFunctionality();
 
 
-    void testEndToEndFuzz(){endToEndFuzzTest(mainWindow, 20, 300);};
+    void testEndToEndFuzz(){endToEndFuzzTest(mainWindow, 20, 100);};
 };
 
 Tests::Tests()

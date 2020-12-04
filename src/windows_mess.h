@@ -3,6 +3,21 @@
 #include <QKeyEvent>
 #include "windows.h"
 
+BOOL CALLBACK enumWindowCallback(HWND hWnd, LPARAM lparam) {
+    int length = GetWindowTextLength(hWnd);
+    char* buffer = new char[length + 1];
+    GetWindowTextA(hWnd, buffer, length + 1);
+    QString windowTitle(buffer);
+
+    // List visible windows with a non-empty title
+    if (IsWindowVisible(hWnd) && length != 0) {
+        qDebug() << hWnd << ":  " << windowTitle;
+        auto vec = reinterpret_cast<QVector<QPair<HWND, QString>>*>(lparam);
+        vec->append(QPair<HWND, QString>(hWnd, windowTitle));
+    }
+    return true;
+}
+
 HWND getHWNDfromName(QString wClass, QString wName)
 {
     wchar_t* name = new wchar_t[wName.length() + 1];
